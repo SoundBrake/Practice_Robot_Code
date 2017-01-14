@@ -10,8 +10,11 @@
 
 
 package org.usfirst.frc2832.PracticeRobotCode.commands;
+import edu.wpi.first.wpilibj.GenericHID.Hand;
+import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.command.Command;
 import org.usfirst.frc2832.PracticeRobotCode.Robot;
+import org.usfirst.frc2832.PracticeRobotCode.RobotMap;
 
 /**
  *
@@ -40,6 +43,13 @@ public class Drive extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
+    	Joystick input = Robot.oi.getJoystick1();
+
+		double speed = input.getY(Hand.kLeft); 
+		speed = speed * (-1); //xbox input inverted
+		double turn = input.getX(Hand.kRight);
+		RobotMap.driveTrainRobotDrive41.arcadeDrive(speed, turn);
+		
     }
 
     // Make this return true when this Command no longer needs to run execute()
